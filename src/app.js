@@ -1,19 +1,20 @@
-const express = require("express");
+const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = 7000;
 
-const authRoutes = require("./routes/auth");
-const { connect } = require("./db/connect");
+const authRoutes = require('./routes/auth');
+const { connect } = require('./db/connect');
 
 async function main() {
   app.use(express.json());
-
+  app.use(cors());
   await connect();
 
-  app.use("/auth", authRoutes);
+  app.use('/auth', authRoutes);
 
   app.use((req, res) => {
-    res.status(404).json({ message: "Route Not found" });
+    res.status(404).json({ message: 'Route Not found' });
   });
   app.use((err, req, res, next) => {
     // console.log(err);
@@ -21,7 +22,7 @@ async function main() {
     res.status(err.status || 500).json({
       // status: "failed",
       // code: err.status,
-      message: err.message || "Internal Server Error",
+      message: err.message || 'Internal Server Error',
     });
   });
 
