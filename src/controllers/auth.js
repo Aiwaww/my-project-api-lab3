@@ -74,7 +74,7 @@ class AuthController {
       if (!user) {
         res.status(404).json({ message: 'User not found' });
       }
-      res.status(200).json({ data: { token: user.token } });
+      res.status(200).json({ data: { token: user.token, email: user.email } });
     } catch (e) {
       console.log('Error:', e);
       next(e);

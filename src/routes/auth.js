@@ -3,6 +3,7 @@ const express = require('express');
 const AuthController = require('../controllers/auth');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../config');
 
 // Define routes
 router.get(
